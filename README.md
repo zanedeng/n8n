@@ -1,5 +1,12 @@
 ![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
 
+# 增加 中文语言包
+
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/e38e1054-4aa7-4ab6-ac69-a9eeb2a5bbfe" />
+
+<img width="1471" alt="image" src="https://github.com/user-attachments/assets/04b32a17-6255-454d-8f91-65bdd5dbe5e5" />
+
+
 # n8n - Secure Workflow Automation for Technical Teams
 
 n8n is a workflow automation platform that gives technical teams the flexibility of code with the speed of no-code. With 400+ integrations, native AI capabilities, and a fair-code license, n8n lets you build powerful automations while maintaining full control over your data and deployments.
