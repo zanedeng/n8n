@@ -3,7 +3,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useI18n } from '@/composables/useI18n';
 import { useToast } from '@/composables/useToast';
 import { useDocumentTitle } from '@/composables/useDocumentTitle';
-import type { IFormInputs, IUser, ThemeOption } from '@/Interface';
+import type { IFormInputs, IUser, ThemeOption, LocaleOption } from '@/Interface';
 import {
 	CHANGE_PASSWORD_MODAL_KEY,
 	MFA_DOCS_URL,
@@ -16,7 +16,8 @@ import { useSettingsStore } from '@/stores/settings.store';
 import { createFormEventBus } from '@n8n/design-system/utils';
 import type { MfaModalEvents } from '@/event-bus/mfa';
 import { promptMfaCodeBus } from '@/event-bus/mfa';
-import type { BaseTextKey } from '@/plugins/i18n';
+import { loadLanguage, type BaseTextKey } from '@/plugins/i18n';
+import { useRootStore } from '@/stores/root.store';
 
 type UserBasicDetailsForm = {
 	firstName: string;
@@ -52,7 +53,20 @@ const themeOptions = ref<Array<{ name: ThemeOption; label: BaseTextKey }>>([
 	},
 ]);
 
+const currentLocale = ref(useRootStore().defaultLocale);
+const localeOptions = ref<Array<{ name: LocaleOption; label: BaseTextKey }>>([
+	{
+		name: 'en',
+		label: 'settings.personal.language.english',
+	},
+	{
+		name: 'zh-CN',
+		label: 'settings.personal.language.simplifiedChinese',
+	},
+]);
+
 const uiStore = useUIStore();
+const rootStore = useRootStore();
 const usersStore = useUsersStore();
 const settingsStore = useSettingsStore();
 
@@ -76,7 +90,9 @@ const isMfaFeatureEnabled = computed((): boolean => {
 	return settingsStore.isMfaFeatureEnabled;
 });
 const hasAnyPersonalisationChanges = computed((): boolean => {
-	return currentSelectedTheme.value !== uiStore.theme;
+	return (
+		currentSelectedTheme.value !== uiStore.theme || currentLocale.value !== rootStore.defaultLocale
+	);
 });
 const hasAnyChanges = computed(() => {
 	return hasAnyBasicInfoChanges.value || hasAnyPersonalisationChanges.value;
@@ -190,6 +206,7 @@ async function updatePersonalisationSettings() {
 		return;
 	}
 
+	rootStore.setDefaultLocale(currentLocale.value);
 	uiStore.setTheme(currentSelectedTheme.value);
 }
 
@@ -335,7 +352,7 @@ onBeforeUnmount(() => {
 				}}</n8n-heading>
 			</div>
 			<div>
-				<n8n-input-label :label="i18n.baseText('settings.personal.theme')">
+				<n8n-input-label :label="i18n.baseText('settings.personal.theme')" class="mb-xs">
 					<n8n-select
 						v-model="currentSelectedTheme"
 						:class="$style.themeSelect"
@@ -345,6 +362,23 @@ onBeforeUnmount(() => {
 					>
 						<n8n-option
 							v-for="item in themeOptions"
+							:key="item.name"
+							:label="i18n.baseText(item.label)"
+							:value="item.name"
+						>
+						</n8n-option>
+					</n8n-select>
+				</n8n-input-label>
+				<n8n-input-label :label="i18n.baseText('settings.personal.language')">
+					<n8n-select
+						v-model="currentLocale"
+						:class="$style.themeSelect"
+						data-test-id="locale-select"
+						size="small"
+						filterable
+					>
+						<n8n-option
+							v-for="item in localeOptions"
 							:key="item.name"
 							:label="i18n.baseText(item.label)"
 							:value="item.name"

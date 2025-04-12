@@ -8,6 +8,7 @@ import { useUIStore } from '@/stores/ui.store';
 import { useNDVStore } from '@/stores/ndv.store';
 import { useRootStore } from '@/stores/root.store';
 import englishBaseText from './locales/en.json';
+import chineseBaseText from './locales/zh-CN.json';
 import {
 	deriveMiddleKey,
 	isNestedInCollectionLike,
@@ -16,9 +17,9 @@ import {
 } from './utils';
 
 export const i18nInstance = createI18n({
-	locale: 'en',
-	fallbackLocale: 'en',
-	messages: { en: englishBaseText },
+	locale: 'zh-CN',
+	fallbackLocale: 'zh-CN',
+	messages: { en: englishBaseText, 'zh-CN': chineseBaseText },
 	warnHtmlInMessage: 'off',
 });
 
@@ -59,12 +60,12 @@ export class I18nClass {
 	 */
 	baseText(key: BaseTextKey, options?: BaseTextOptions): string {
 		// Create a unique cache key
-		const cacheKey = `${key}-${JSON.stringify(options)}`;
+		// const cacheKey = `${key}-${JSON.stringify(options)}`;
 
 		// Check if the result is already cached
-		if (this.baseTextCache.has(cacheKey)) {
-			return this.baseTextCache.get(cacheKey) ?? key;
-		}
+		// if (this.baseTextCache.has(cacheKey)) {
+		// 	return this.baseTextCache.get(cacheKey) ?? key;
+		// }
 
 		const interpolate = { ...options?.interpolate };
 		let result: string;
@@ -75,7 +76,7 @@ export class I18nClass {
 		}
 
 		// Store the result in the cache
-		this.baseTextCache.set(cacheKey, result);
+		// this.baseTextCache.set(cacheKey, result);
 
 		return result;
 	}
@@ -376,7 +377,7 @@ export class I18nClass {
 const loadedLanguages = ['en'];
 
 async function setLanguage(language: string) {
-	i18nInstance.global.locale = language as 'en';
+	i18nInstance.global.locale = language as 'en' | 'zh-CN';
 	axios.defaults.headers.common['Accept-Language'] = language;
 	document!.querySelector('html')!.setAttribute('lang', language);
 

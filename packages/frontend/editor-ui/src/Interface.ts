@@ -1529,6 +1529,19 @@ export type ToggleNodeCreatorOptions = {
 export type AppliedThemeOption = 'light' | 'dark';
 export type ThemeOption = AppliedThemeOption | 'system';
 
+export type LocaleOption =
+	| 'en'
+	| 'de'
+	| 'es'
+	| 'fr'
+	| 'it'
+	| 'ja'
+	| 'ko'
+	| 'pl'
+	| 'pt-BR'
+	| 'ru'
+	| 'zh-CN';
+
 export type EnterpriseEditionFeatureKey =
 	| 'AdvancedExecutionFilters'
 	| 'Sharing'
