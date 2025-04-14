@@ -8,6 +8,23 @@
 
 <img width="1467" alt="image" src="https://github.com/user-attachments/assets/bac924c6-1a06-4bca-8267-d6d2ec56b177" />
 
+# 替换 editor-ui 包
+
+```shell
+# 安装依赖
+pnpm i
+
+# build editor-ui
+pnpm build:frontend
+```
+映射 docker 容器里面的 editor-ui 目录路径
+
+```shell
+docker run -it --rm --name n8ntest \
+-p 5678:5678 \
+-v 【替换为本地项目 /Users/xxx/n8n/packages/frontend/editor-ui/dist】:/usr/local/lib/node_modules/n8n/node_modules/n8n-editor-ui/dist \
+docker.n8n.io/n8nio/n8n
+```
 
 # n8n - Secure Workflow Automation for Technical Teams
 
