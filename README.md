@@ -6,6 +6,8 @@
 
 <img width="1471" alt="image" src="https://github.com/user-attachments/assets/04b32a17-6255-454d-8f91-65bdd5dbe5e5" />
 
+<img width="1467" alt="image" src="https://github.com/user-attachments/assets/bac924c6-1a06-4bca-8267-d6d2ec56b177" />
+
 
 # n8n - Secure Workflow Automation for Technical Teams
 
