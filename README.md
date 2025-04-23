@@ -10,7 +10,7 @@
 
 # 翻译语言包
 
-配置 `.env.local`
+在跟目录新建 `.env.local` 文件，配置如下：
 
 ```
 DEEP_SEEK_URL=https://api.deepseek.ai
