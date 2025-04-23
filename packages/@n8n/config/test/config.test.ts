@@ -115,10 +115,6 @@ describe('GlobalConfig', () => {
 		externalHooks: {
 			files: [],
 		},
-		externalSecrets: {
-			preferGet: false,
-			updateInterval: 300,
-		},
 		nodes: {
 			communityPackages: {
 				enabled: true,
@@ -314,6 +310,10 @@ describe('GlobalConfig', () => {
 		},
 		partialExecutions: {
 			version: 2,
+		},
+		workflowHistory: {
+			enabled: true,
+			pruneTime: -1,
 		},
 	};
 
