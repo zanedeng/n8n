@@ -8,11 +8,27 @@
 
 <img width="1467" alt="image" src="https://github.com/user-attachments/assets/bac924c6-1a06-4bca-8267-d6d2ec56b177" />
 
-# 替换 editor-ui 包
+# 翻译语言包
+
+配置 `.env.local`
+
+```
+DEEP_SEEK_URL=https://api.deepseek.ai
+DEEP_SEEK_API_KEY=【替换为自己的 deepseek api key】
+DEEP_SEEK_MODEL=deepseek-chat
+```
 
 ```shell
 # 安装依赖
 pnpm i
+
+# 翻译语言包
+pnpm i18n:translate
+```
+
+# 编译前端包，替换 editor-ui 包
+
+```shell
 
 # build editor-ui
 pnpm build:frontend

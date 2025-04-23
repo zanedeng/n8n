@@ -44,7 +44,8 @@
     "test:nodes": "turbo run test:nodes --concurrency=1",
     "watch": "turbo run watch --parallel",
     "webhook": "./packages/cli/bin/n8n webhook",
-    "worker": "./packages/cli/bin/n8n worker"
+    "worker": "./packages/cli/bin/n8n worker",
+    "i18n:translate": "node scripts/i18n-translate.js"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.0",
